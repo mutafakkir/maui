@@ -27,6 +27,9 @@ namespace Microsoft.Maui.Platform
 
 		public static void UpdateInputTransparent(this UIView nativeView, IView view)
 		{
+			if (view is ITextInput textInput && view.IsEnabled && textInput.IsReadOnly)
+				return;
+
 			bool shouldInteract;
 
 			if (view is ILayout layout)
